@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>西双版纳5日旅行手册 (2026.09.05 - 09.09)</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --primary: #0284c7;
+      --accent: #d97706;
+      --alert-bg: #fef2f2;
+      --alert-border: #fecaca;
+      --alert-text: #991b1b;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --d1-color: #3b82f6;
+      --d2-color: #10b981;
+      --d3-color: #f59e0b;
+      --d4-color: #8b5cf6;
+      --d5-color: #64748b;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b0f19;
+        --card-bg: #1e293b;
+        --text-main: #f1f5f9;
+        --text-muted: #94a3b8;
+        --border: #334155;
+        --primary: #38bdf8;
+        --accent: #fbbf24;
+        --alert-bg: #450a0a;
+        --alert-border: #7f1d1d;
+        --alert-text: #fca5a5;
+        --tag-bg: #0c4a6e;
+        --tag-text: #7dd3fc;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.5;
+      padding: 16px;
+      max-width: 640px;
+      margin: 0 auto;
+      padding-bottom: 60px;
+    }
+
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    /* 顶部倒计时卡片 */
+    .focus-card {
+      border-left: 5px solid var(--primary);
+      background: linear-gradient(to bottom right, var(--card-bg), var(--bg));
+    }
+    .focus-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background-color: var(--tag-bg);
+      color: var(--tag-text);
+      margin-bottom: 8px;
+    }
+    .focus-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .countdown-grid {
+      display: flex;
+      gap: 8px;
+      align-items: baseline;
+      margin-top: 8px;
+    }
+    .countdown-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .countdown-val {
+      font-size: 1.8rem;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+      color: var(--primary);
+    }
+    .countdown-lbl {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    /* 标题统一样式 */
+    .section-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* 预订凭证卡片 */
+    .booking-item {
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+      border-bottom: 1px dashed var(--border);
+    }
+    .booking-item:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: none;
+    }
+    .booking-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+      font-size: 0.9rem;
+    }
+    .booking-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+    .booking-meta a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    /* SVG 概览图 */
+    .svg-container {
+      width: 100%;
+      background: var(--card-bg);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    svg text {
+      user-select: none;
+    }
+
+    /* 逐日行程排版 */
+    .day-wrapper {
+      margin-bottom: 16px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--card-bg);
+      overflow: hidden;
+    }
+    .day-header {
+      padding: 12px 16px;
+      background-color: var(--bg);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+    .day-tag {
+      font-weight: 800;
+      font-size: 0.95rem;
+    }
+    .nav-all-btn {
+      font-size: 0.75rem;
+      background-color: var(--primary);
+      color: #fff;
+      padding: 4px 8px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .day-content {
+      padding: 12px 16px;
+    }
+    .timeline-row {
+      display: flex;
+      margin-bottom: 14px;
+      font-size: 0.88rem;
+      position: relative;
+    }
+    .timeline-row:last-child {
+      margin-bottom: 0;
+    }
+    .timeline-time {
+      width: 52px;
+      flex-shrink: 0;
+      font-weight: 700;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+    }
+    .timeline-body {
+      flex-grow: 1;
+      padding-left: 10px;
+      border-left: 2px solid var(--border);
+    }
+    .timeline-action {
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .timeline-detail {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+    .spot-link {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+    }
+    .ticket-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 1px 4px;
+      border-radius: 3px;
+      background: var(--alert-bg);
+      color: var(--alert-text);
+      border: 1px solid var(--alert-border);
+      margin-left: 4px;
+      vertical-align: text-bottom;
+    }
+
+    /* 列表与贴士 */
+    .todo-list {
+      list-style: none;
+    }
+    .todo-item {
+      font-size: 0.88rem;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .todo-item:last-child {
+      border-bottom: none;
+    }
+    .todo-bullet {
+      color: var(--primary);
+      font-weight: 900;
+    }
+    .tips-box {
+      background-color: var(--alert-bg);
+      border: 1px solid var(--alert-border);
+      color: var(--alert-text);
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>西双版纳 5 日出行手册</h1>
+
+  <!-- 1. 顶部「此刻关注」卡片 -->
+  <div class="card focus-card">
+    <span class="focus-badge" id="eventBadge">下个目标</span>
+    <div class="focus-title" id="eventTitle">正在载入时间线...</div>
+    <div class="countdown-grid" id="countdownContainer">
+      <div class="countdown-unit"><span class="countdown-val" id="cdDays">00</span><span class="countdown-lbl">天</span></div>
+      <div class="countdown-unit"><span class="countdown-val" id="cdHours">00</span><span class="countdown-lbl">时</span></div>
+      <div class="countdown-unit"><span class="countdown-val" id="cdMins">00</span><span class="countdown-lbl">分</span></div>
+      <div class="countdown-unit"><span class="countdown-val" id="cdSecs">00</span><span class="countdown-lbl">秒</span></div>
+    </div>
+  </div>
+
+  <!-- 2. 行程总览地图 (手绘感 SVG) -->
+  <div class="card">
+    <div class="section-title">全域行程概览图</div>
+    <div class="svg-container">
+      <svg viewBox="0 0 500 360" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100%" height="100%" fill="none"/>
+        <!-- 装饰性山峦底纹 -->
+        <path d="M 30 330 Q 80 270 140 330 T 260 330 T 380 330 T 480 330" fill="none" stroke="var(--border)" stroke-width="2" stroke-dasharray="4,4"/>
+        
+        <!-- D2 往返路线 (野象谷向北，植物园向东南) -->
+        <path d="M 230 230 L 230 70" stroke="var(--d2-color)" stroke-width="3" stroke-linecap="round" stroke-dasharray="3,3"/>
+        <path d="M 230 230 L 410 260" stroke="var(--d2-color)" stroke-width="3" stroke-linecap="round"/>
+
+        <!-- D3 往返路线 (南糯山向西，曼听公园在城中) -->
+        <path d="M 230 230 L 70 180" stroke="var(--d3-color)" stroke-width="3" stroke-linecap="round"/>
+        <path d="M 230 230 L 220 200" stroke="var(--d3-color)" stroke-width="3" stroke-linecap="round"/>
+
+        <!-- D4 路线 (大佛寺在城南，告庄在江北) -->
+        <path d="M 230 230 L 245 270" stroke="var(--d4-color)" stroke-width="3" stroke-linecap="round"/>
+        <path d="M 230 230 L 260 170" stroke="var(--d4-color)" stroke-width="3" stroke-linecap="round"/>
+
+        <!-- D1 / D5 机场连接 -->
+        <path d="M 180 280 L 230 230" stroke="var(--d1-color)" stroke-width="2" stroke-dasharray="2,2"/>
+
+        <!-- 节点标注 -->
+        <!-- 酒店核心枢纽 -->
+        <circle cx="230" cy="230" r="8" fill="#ef4444"/>
+        <text x="230" y="220" font-size="12" font-weight="bold" fill="var(--text-main)" text-anchor="middle">每晚宿: 曼贺纳古寨/凯里亚德</text>
+
+        <!-- 嘎洒机场 -->
+        <circle cx="180" cy="280" r="5" fill="var(--d1-color)"/>
+        <text x="170" y="300" font-size="10" fill="var(--text-muted)" text-anchor="middle">嘎洒机场 (D1/D5)</text>
+
+        <!-- 野象谷 -->
+        <circle cx="230" cy="70" r="5" fill="var(--d2-color)"/>
+        <text x="230" y="55" font-size="11" font-weight="bold" fill="var(--text-main)" text-anchor="middle">D2 野象谷 (正北35km)</text>
+
+        <!-- 中科院植物园 -->
+        <circle cx="410" cy="260" r="5" fill="var(--d2-color)"/>
+        <text x="410" y="280" font-size="11" font-weight="bold" fill="var(--text-main)" text-anchor="middle">D2 勐仑植物园 (东南65km)</text>
+
+        <!-- 南糯山 -->
+        <circle cx="70" cy="180" r="5" fill="var(--d3-color)"/>
+        <text x="70" y="165" font-size="11" font-weight="bold" fill="var(--text-main)" text-anchor="middle">D3 南糯山茶山 (向西)</text>
+
+        <!-- 曼听公园 -->
+        <circle cx="220" cy="200" r="5" fill="var(--d3-color)"/>
+        <text x="180" y="200" font-size="10" fill="var(--text-main)" text-anchor="end">D3 曼听公园</text>
+
+        <!-- 勐泐大佛寺 -->
+        <circle cx="245" cy="270" r="5" fill="var(--d4-color)"/>
+        <text x="255" y="285" font-size="10" fill="var(--text-main)">D4 勐泐大佛寺</text>
+
+        <!-- 告庄西双景 -->
+        <circle cx="260" cy="170" r="5" fill="var(--d4-color)"/>
+        <text x="270" y="165" font-size="10" fill="var(--text-main)">D4 告庄夜市</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- 3. 已确认的交通/住宿/凭证 -->
+  <div class="card">
+    <div class="section-title">已确认订单与凭证</div>
+
+    <div class="booking-item">
+      <div class="booking-row">
+        <strong>去程航班：春秋航空 9C7605</strong>
+        <span>2026-09-05</span>
+      </div>
+      <div class="booking-meta">
+        时段：17:10 (浦东T2) $\rightarrow$ 21:10 (版纳嘎洒)<br>
+        值机柜台：浦东 T2 航站楼 <strong>M01-12 柜台</strong><br>
+        导航：<a href="https://uri.amap.com/marker?position=121.808273,31.14979&name=浦东国际机场T2">高德地图导航至浦东T2</a>
+      </div>
+    </div>
+
+    <div class="booking-item">
+      <div class="booking-row">
+        <strong>回程航班：春秋航空 9C6450</strong>
+        <span>2026-09-09</span>
+      </div>
+      <div class="booking-meta">
+        时段：12:20 (版纳嘎洒) $\rightarrow$ 16:00 (浦东T2)<br>
+        值机柜台：嘎洒机场 <strong>B6/7 柜台</strong><br>
+        导航：<a href="https://uri.amap.com/marker?position=100.760775,21.973977&name=西双版纳嘎洒国际机场">高德地图导航至嘎洒机场</a>
+      </div>
+    </div>
+
+    <div class="booking-item">
+      <div class="booking-row">
+        <strong>全程酒店：凯里亚德酒店</strong>
+        <span>4晚连住</span>
+      </div>
+      <div class="booking-meta">
+        分店：西双版纳景洪勐泐大佛寺曼贺纳古寨店<br>
+        地址：景洪市曼弄枫街道曼弄金湾B区B6栋<br>
+        前台电话：<a href="tel:06918933338">0691-8933338</a><br>
+        导航：<a href="https://uri.amap.com/marker?position=100.803212,21.977421&name=凯里亚德酒店(景洪勐泐大佛寺曼贺纳古寨店)">高德地图导航至酒店</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. 逐日行程与多点导航 -->
+  <!-- D1 -->
+  <div class="day-wrapper">
+    <div class="day-header">
+      <span class="day-tag" style="color:var(--d1-color);">Day 1 (09-05 周六) 抵达入驻</span>
+      <a class="nav-all-btn" href="https://uri.amap.com/navigation?from=100.760775,21.973977,西双版纳嘎洒机场&to=100.803212,21.977421,凯里亚德酒店&mode=car">一键导航此日</a>
+    </div>
+    <div class="day-content">
+      <div class="timeline-row">
+        <div class="timeline-time">17:10</div>
+        <div class="timeline-body">
+          <div class="timeline-action">浦东 T2 起飞</div>
+          <div class="timeline-detail">春秋航空 9C7605，准时起飞前建议 15:10 前到达 M 岛办托运。</div>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">21:10</div>
+        <div class="timeline-body">
+          <div class="timeline-action">降落版纳嘎洒机场</div>
+          <div class="timeline-detail">提取行李，联系导游/接机司机出站集合。</div>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">22:00</div>
+        <div class="timeline-body">
+          <div class="timeline-action">入住 <a class="spot-link" href="https://uri.amap.com/marker?position=100.803212,21.977421&name=凯里亚德酒店曼贺纳店">凯里亚德酒店</a></div>
+          <div class="timeline-detail">办理入住并休整，为次日长途车程补充体力。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- D2 -->
+  <div class="day-wrapper">
+    <div class="day-header">
+      <span class="day-tag" style="color:var(--d2-color);">Day 2 (09-06 周日) 植物园与野象谷</span>
+      <a class="nav-all-btn" href="https://uri.amap.com/navigation?from=100.803212,21.977421,凯里亚德酒店&via=101.254201,21.921382,中科院植物园&to=100.865322,22.170258,野象谷&mode=car">一键导航此日</a>
+    </div>
+    <div class="day-content">
+      <div class="timeline-row">
+        <div class="timeline-time">07:30</div>
+        <div class="timeline-body">
+          <div class="timeline-action">早餐并出发往勐仑</div>
+          <div class="timeline-detail">乘车约 1.5 小时，跨越 65 公里前往中科院热带植物园。</div>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">09:00</div>
+        <div class="timeline-body">
+          <div class="timeline-action">游览 <a class="spot-link" href="https://uri.amap.com/marker?position=101.254201,21.921382&name=中国科学院西双版纳热带植物园">勐仑植物园 (西区)</a> <span class="ticket-badge">含50元电瓶车</span></div>
+          <div class="timeline-detail">重点打卡水生植物园、百花园、奇花异木园。游览约 3 小时。</div>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">12:30</div>
+        <div class="timeline-body">
+          <div class="timeline-action">午餐并转场野象谷</div>
+          <div class="timeline-detail">两地相距约 85 公里，乘车需约 1.5 小时，备好晕车贴。</div>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">14:30</div>
+        <div class="timeline-body">
+          <div class="timeline-action">游览 <a class="spot-link" href="https://uri.amap.com/marker?position=100.865322,22.170258&name=野象谷景区">野象谷</a> <span class="ticket-badge">门票已含/索道不含</span></div>
+          <div class="timeline-detail">漫步高架高空观象栈道、亚洲象博物馆、兰花园，观赏大象自然行为展示。</div>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">17:30</div>
+        <div class="timeline-body">
+          <div class="timeline-action">乘车返程景洪市区</div>
+          <div class="timeline-detail">返回酒店周边享用晚餐并休息。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- D3 -->
+  <div class="day-wrapper">
+    <div class="day-header">
+      <span class="day-tag" style="color:var(--d3-color);">Day 3 (09-07 周一) 南糯山与曼听御公园</span>
+      <a class="nav-all-btn" href="https://uri.amap.com/navigation?from=100.803212,21.977421,凯里亚德酒店&via=100.528432,21.975412,南糯山半坡老寨&to=100.800185,21.996531,曼听公园&mode=car">一键导航此日</a>
+    </div>
+    <div class="day-content">
+      <div class="timeline-row">
+        <div class="timeline-time">08:30</div>
+        <div class="timeline-body">
+          <div class="timeline-action">出发前往 <a class="spot-link" href="https://uri.amap.com/marker?position=100.528432,21.975412&name=南糯山姑娘寨">南糯山茶山</a></div>
+          <div class="timeline-detail">车程约 50 分钟，放慢脚步参与云南普洱茶生态采摘、制茶工艺讲解体验。</div>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">12:30</div>
+        <div class="timeline-body">
+          <div class="timeline-action">哈尼族特色风味午餐</div>
+          <div class="timeline-detail">品尝茶山生态土鸡与山野菜。</div>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">14:30</div>
+        <div class="timeline-body">
+          <div class="timeline-action">漫游 <a class="spot-link" href="https://uri.amap.com/marker?position=100.800185,21.996531&name=曼听公园">曼听公园</a> <span class="ticket-badge">含换装+下午茶</span></div>
+          <div class="timeline-detail">
+            傣王御花园换装拍照体验，精灵集市品味宫廷茶歇。步行可联游相通的总佛寺。
+          </div>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">18:00</div>
+        <div class="timeline-body">
+          <div class="timeline-action">晚餐与自由活动</div>
+          <div class="timeline-detail">可于市区就餐，体验当地泡鲁达、舂鸡脚与手抓饭。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- D4 -->
+  <div class="day-wrapper">
+    <div class="day-header">
+      <span class="day-tag" style="color:var(--d4-color);">Day 4 (09-08 周二) 傣寨、大佛寺与星光夜市</span>
+      <a class="nav-all-btn" href="https://uri.amap.com/navigation?from=100.803212,21.977421,凯里亚德酒店&via=100.812423,21.967812,勐泐大佛寺&to=100.825832,22.012431,告庄西双景星光夜市&mode=car">一键导航此日</a>
+    </div>
+    <div class="day-content">
+      <div class="timeline-row">
+        <div class="timeline-time">08:30</div>
+        <div class="timeline-body">
+          <div class="timeline-action">参访傣族村寨</div>
+          <div class="timeline-detail">走访竹楼了解傣家民俗（注意理性对待银器饰品推销）。</div>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">11:00</div>
+        <div class="timeline-body">
+          <div class="timeline-action">参拜 <a class="spot-link" href="https://uri.amap.com/marker?position=100.812423,21.967812&name=勐泐大佛寺">勐泐大佛寺</a> <span class="ticket-badge">含40元单程电瓶车</span></div>
+          <div class="timeline-detail">距酒店车程仅 15 分钟。登顶景飘大殿俯瞰景洪全貌，参与菩提祈福活动。</div>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">13:30</div>
+        <div class="timeline-body">
+          <div class="timeline-action">午餐后回酒店避暑午休</div>
+          <div class="timeline-detail">版纳正午气温高、紫外线强烈，在酒店休息至傍晚出发。</div>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">18:30</div>
+        <div class="timeline-body">
+          <div class="timeline-action">夜游 <a class="spot-link" href="https://uri.amap.com/marker?position=100.825832,22.012431&name=告庄西双景">告庄西双景星光夜市</a></div>
+          <div class="timeline-detail">大金塔下自由逛街，体验东南亚特色美食、手作工坊与江边夜景。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- D5 -->
+  <div class="day-wrapper">
+    <div class="day-header">
+      <span class="day-tag" style="color:var(--d5-color);">Day 5 (09-09 周三) 告别版纳返沪</span>
+      <a class="nav-all-btn" href="https://uri.amap.com/navigation?from=100.803212,21.977421,凯里亚德酒店&to=100.760775,21.973977,嘎洒国际机场&mode=car">一键导航此日</a>
+    </div>
+    <div class="day-content">
+      <div class="timeline-row">
+        <div class="timeline-time">08:30</div>
+        <div class="timeline-body">
+          <div class="timeline-action">酒店早餐，打包行李退房</div>
+          <div class="timeline-detail">清点随身物品，检查充电器、身份证件。</div>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">09:40</div>
+        <div class="timeline-body">
+          <div class="timeline-action">专车送往嘎洒机场</div>
+          <div class="timeline-detail">酒店距机场约 10 公里，行车约 25 分钟。</div>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">10:20</div>
+        <div class="timeline-body">
+          <div class="timeline-action">嘎洒机场办票安检</div>
+          <div class="timeline-detail">前往 <strong>B6/7 柜台</strong> 办理春秋航空 9C6450 值机托运。</div>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">12:20</div>
+        <div class="timeline-body">
+          <div class="timeline-action">起飞返沪</div>
+          <div class="timeline-detail">预计 16:00 抵达上海浦东国际机场 T2 航站楼。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. 待办清单 -->
+  <div class="card">
+    <div class="section-title">出行待办事项 (纯列表)</div>
+    <ul class="todo-list">
+      <li class="todo-item"><span class="todo-bullet">■</span> 确认春秋航空免费手提行李额度（单件不超 7kg），若超重需提前在线购买行李额</li>
+      <li class="todo-item"><span class="todo-bullet">■</span> 携带 SPF50+ 防晒霜、墨镜、折叠晴雨伞（版纳 9 月易突发阵雨）</li>
+      <li class="todo-item"><span class="todo-bullet">■</span> 携带强效驱蚊液、青草膏（热带植物园及野象谷蚊虫极多）</li>
+      <li class="todo-item"><span class="todo-bullet">■</span> 准备一套过膝长裤或长裙（进入总佛寺、勐泐大佛寺禁止露肩露膝装扮）</li>
+      <li class="todo-item"><span class="todo-bullet">■</span> 准备舒适防滑平底徒步鞋（D2 植物园及野象谷步行步数破万）</li>
+    </ul>
+  </div>
+
+  <!-- 6. 实用贴士 -->
+  <div class="card">
+    <div class="section-title">安全与游玩提示</div>
+    <div class="tips-box">
+      <strong>1. 宗教与民俗礼仪：</strong>进入佛寺大殿需脱鞋脱帽，不可脚踩门槛，切勿随意触摸小和尚头部，严禁对着佛像正脸近距离开闪光灯拍照。<br>
+      <strong>2. 消费警惕：</strong>D4 傣族村寨游览期间，讲解员若极力引导购买银饰或药材，需保持清醒，此类商品溢价极高且售后维权繁琐。<br>
+      <strong>3. 夜市防宰：</strong>星光夜市拍写真摊位繁多，若需拍照务必提前敲定总价、成片精修张数及是否含底片，避免后期加价。
+    </div>
+  </div>
+
+  <script>
+    // 强制带时区解析 (+08:00 北京时间)
+    const schedule = [
+      { name: "浦东T2春秋航空 9C7605 起飞", time: new Date("2026-09-05T17:10:00+08:00").getTime() },
+      { name: "降落版纳嘎洒机场", time: new Date("2026-09-05T21:10:00+08:00").getTime() },
+      { name: "D2 乘车前往勐仑植物园", time: new Date("2026-09-06T07:30:00+08:00").getTime() },
+      { name: "D2 转场野象谷", time: new Date("2026-09-06T12:30:00+08:00").getTime() },
+      { name: "D3 出发南糯山茶山", time: new Date("2026-09-07T08:30:00+08:00").getTime() },
+      { name: "D3 曼听公园换装与下午茶", time: new Date("2026-09-07T14:30:00+08:00").getTime() },
+      { name: "D4 参拜勐泐大佛寺", time: new Date("2026-09-08T11:00:00+08:00").getTime() },
+      { name: "D4 夜游告庄西双景", time: new Date("2026-09-08T18:30:00+08:00").getTime() },
+      { name: "D5 专车送往嘎洒机场", time: new Date("2026-09-09T09:40:00+08:00").getTime() },
+      { name: "版纳返沪 9C6450 起飞", time: new Date("2026-09-09T12:20:00+08:00").getTime() },
+      { name: "旅行圆满结束，抵沪", time: new Date("2026-09-09T16:00:00+08:00").getTime() }
+    ];
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      let target = null;
+
+      for (let i = 0; i < schedule.length; i++) {
+        if (schedule[i].time > now) {
+          target = schedule[i];
+          break;
+        }
+      }
+
+      const badgeEl = document.getElementById("eventBadge");
+      const titleEl = document.getElementById("eventTitle");
+      const cdContainer = document.getElementById("countdownContainer");
+
+      if (!target) {
+        badgeEl.textContent = "行程结束";
+        titleEl.textContent = "西双版纳之旅已完结";
+        cdContainer.style.display = "none";
+        return;
+      }
+
+      titleEl.textContent = target.name;
+      const diff = target.time - now;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const mins = Math.floor((diff / 1000 / 60) % 60);
+      const secs = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("cdDays").textContent = String(days).padStart(2, '0');
+      document.getElementById("cdHours").textContent = String(hours).padStart(2, '0');
+      document.getElementById("cdMins").textContent = String(mins).padStart(2, '0');
+      document.getElementById("cdSecs").textContent = String(secs).padStart(2, '0');
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
